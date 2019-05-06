@@ -4,15 +4,15 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 // Instruments
-import './theme/init';
+import './theme/init.css';
 import { store } from './init';
 
 // App
-import App from './components/Swapi';
+import { Swapi } from './components/Swapi';
 
 render(
     <Provider store = { store }>
-        <App />
+        <Swapi />
     </Provider>,
-    document.getElementById('app'),
+    document.getElementById('root'),
 );

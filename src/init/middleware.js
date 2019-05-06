@@ -18,9 +18,10 @@ const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [ sagaMiddleware ];
 const devtools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-const composeEnhancers = __DEV__ && devtools ? devtools : compose;
+const composeEnhancers
+    = process.env.NODE_ENV === 'development' && devtools ? devtools : compose;
 
-if (__DEV__) {
+if (process.env.NODE_ENV === 'development') {
     middleware.push(logger);
 }
 

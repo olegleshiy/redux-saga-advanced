@@ -1,7 +1,7 @@
 // Instruments
-import { ROOT_URL } from './../config';
+import { ROOT_URL } from './config';
 
-export default new class Api {
+export const api = new class Api {
     fetchVehicles(page = '1') {
         return fetch(`${ROOT_URL}/vehicles/?page=${page}`);
     }
