@@ -16,7 +16,7 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-export function* runExample() {
+export function* runExample() { // ←
     let page = 1;
 
     while (true) {
@@ -30,3 +30,12 @@ export function* runExample() {
         page === 4 ? page = 1 : page += 1;
     }
 }
+
+/// ....
+
+// saga middleware ←
+// 1. saga takes an action with a type FETCH_VEHICLES_ASYNC...
+// 2. generator.next();
+// 3. saga registers an api request
+// 4. saga resolves request to api
+// 5. generator.next(response)

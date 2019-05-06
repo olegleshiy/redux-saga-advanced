@@ -11,13 +11,13 @@ import {
     fork,
     cancel,
     cancelled,
+    delay,
 } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
 
 // Instruments
 import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
-import { api } from '../../API';
+import { api } from '../../Api';
 
 function* fetchVehicles(action) {
     try {

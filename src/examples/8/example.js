@@ -14,8 +14,7 @@
  */
 
 // Core
-import { take, spawn } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { take, spawn, delay } from 'redux-saga/effects';
 
 // Instruments
 import { types } from '../../bus/swapi/types';

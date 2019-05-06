@@ -8,7 +8,7 @@ import { take, put, call, apply, fork, cancel } from 'redux-saga/effects';
 // Instruments
 import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
-import { api } from '../../API';
+import { api } from '../../Api';
 
 function* fetchVehicles(action) {
     const response = yield call(api.fetchVehicles, action.payload);

@@ -43,7 +43,7 @@ export const Swapi = () => {
         // this.props.fetchVehiclesAsync(nextPage);
         // this.props.fetchPeopleAsync(nextPage);
         // this.props.fetchPlanetsAsync(nextPage);
-        dispatch(swapiActions.props.fetchAll(nextPage));
+        dispatch(swapiActions.fetchAll(nextPage));
 
         setPage(nextPage);
     };

@@ -1,10 +1,9 @@
 // Core
-import { put, call, apply } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { put, call, apply, delay } from 'redux-saga/effects';
 
 // Instruments
 import { swapiActions } from '../../bus/swapi/actions';
-import { api } from '../../API';
+import { api } from '../../Api';
 
 export function* fetchPlanets(action) {
     yield delay(1000);

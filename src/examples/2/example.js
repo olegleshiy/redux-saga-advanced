@@ -13,7 +13,7 @@ import { take, put } from 'redux-saga/effects';
 // Instruments
 import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
-import { api } from '../../API';
+import { api } from '../../Api';
 
 export function* runExample() {
     while (true) {

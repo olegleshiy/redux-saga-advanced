@@ -7,13 +7,12 @@
  */
 
 // Core
-import { takeLatest, put, call, apply } from 'redux-saga/effects';
-import { delay } from 'redux-saga';
+import { takeLatest, put, call, apply, delay } from 'redux-saga/effects';
 
 // Instruments
 import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
-import { api } from '../../API';
+import { api } from '../../Api';
 
 function* fetchVehicles(action) {
     yield delay(1000);
