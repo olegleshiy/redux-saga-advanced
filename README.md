@@ -46,7 +46,7 @@
 
 > Список поддерживаемых нами операционных систем [можно найти здесь](https://lab.lectrum.io/faq#supported-os).
 
-> Если ты пользователь Windows, [настрой себе терминал](https://lab.lectrum.io/faq#how-to-setup-terminal-on-windows)
+> Если ты пользователь Windows, [настрой себе терминал](https://lab.lectrum.io/faq#how-to-setup-terminal-on-windows).
 
 1. [Скачай и установи](https://nodejs.org/en/) последнюю **`LTS-версию Node.js`**:
 2. Выполни в консоли **`node -v`** и убедись, что установленная версия **`Node.js`** не ниже **`10.16.0`**;
