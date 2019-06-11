@@ -5,14 +5,14 @@ import { put, call, apply, cancelled, delay } from 'redux-saga/effects';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-export function* fetchVehicles(action) {
+export function* fetchEntity(action, entityType) {
     try {
-        yield delay(3000);
+        yield delay(1000);
 
-        const response = yield call(api.fetchVehicles, action.payload);
+        const response = yield call(api[ `fetch${entityType}` ], action.payload);
         const data = yield apply(response, response.json);
 
-        yield put(swapiActions.fillVehicles(data.results));
+        yield put(swapiActions[ `fill${entityType}` ](data.results));
     } catch (error) {
         console.log('→ error', error);
     } finally {

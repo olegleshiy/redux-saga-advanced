@@ -16,26 +16,13 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-export function* runExample() { // ←
-    let page = 1;
-
+export function* runExample() {
     while (true) {
-        yield take(types.FETCH_VEHICLES_ASYNC);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
 
-        const response = yield call(api.fetchVehicles, [ page ]);
+        const response = yield call(api.fetchPlanets, [ action.payload ]);
         const data = yield apply(response, response.json);
 
-        yield put(swapiActions.fillVehicles(data.results));
-
-        page === 4 ? page = 1 : page += 1;
+        yield put(swapiActions.fillPlanets(data.results));
     }
 }
-
-/// ....
-
-// saga middleware ←
-// 1. saga takes an action with a type FETCH_VEHICLES_ASYNC...
-// 2. generator.next();
-// 3. saga registers an api request
-// 4. saga resolves request to api
-// 5. generator.next(response)

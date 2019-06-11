@@ -1,18 +1,28 @@
+:root {
+    --paletteColor1: #ebeb56;
+    --paletteColor2: #e28574;
+    --paletteColor3: #6495ed;
+    --paletteColor4: #9eca5b;
+    --paletteColor5: #fff5ee;
+
+    background-color: #161619;
+}
+
 .swapi {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #161619;
     min-height: 100vh;
     padding-top: 20px;
-    color: #ffff02;
+    color: var(--paletteColor1);
     user-select: none;
 
     & h1 {
+        margin-top: 0;
+        margin-bottom: 40px;
         color: currentColor;
         font-size: 60px;
         font-weight: 800;
-        margin-bottom: 40px;
     }
 
     & button {
@@ -22,70 +32,95 @@
         cursor: pointer;
         border: 2px solid currentColor;
         background-color: transparent;
-        transition: box-shadow 0.3s ease;
-        margin: 0 5px 40px;
+        transition: transform 0.3s ease;
+        margin: 0 5px 15px;
+        outline: none;
 
         &:hover {
-            box-shadow: 0px 2px 3px -1px currentColor;
-        }
-    }
-
-    & .getPages {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-
-        & button {
-            color: wheat;
+            transform: translateY(-2px);
         }
     }
 
     & .getPrecise {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
+        flex-direction: column;
+        min-width: 335px;
 
-        & .startFetch {
-            color: springgreen;
+        & .fetchAll {
+            color: var(--paletteColor3);
         }
 
         & .cancelFetch {
-            color: tomato;
-        }
-
-        & .fetchAll {
-            color: cornflowerblue;
+            color: var(--paletteColor2);
         }
     }
 
     & .lists {
         display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 7px;
 
-        & h1 {
-            font-size: 35px;
-            text-align: center;
-            font-weight: 400;
-        }
+        & section {
+            display: flex;
+            flex-direction: column;
+            min-width: 380px;
 
-        & ul {
-            width: 32vw;
+            &:not(:last-child) {
+                margin-right: 15px;
+            }
 
-            & li {
+            & h2,
+            & h3 {
+                text-align: center;
+            }
+
+            & h2 {
+                font-size: 45px;
+                min-width: 320px;
+                margin: 10px 0;
+            }
+
+            & h3 {
+                font-size: 25px;
+                margin: 7px 0;
+            }
+
+            & button {
+                margin-bottom: 10px;
+                font-size: 25px;
+                text-align: center;
+                font-weight: 400;
+                color: var(--paletteColor4);
+            }
+
+            & div {
                 display: flex;
-                flex-direction: column;
-                font-size: 18px;
-                font-weight: 500;
-                margin-bottom: 15px;
-                line-height: 1.4;
+                justify-content: center;
 
-                & span {
-                    display: inline-block;
+                & button {
+                    font-size: 15px;
+                }
+            }
+
+            & ul {
+                padding: 0 0 0 7px;
+
+                & li {
+                    display: flex;
+                    flex-direction: column;
+                    font-size: 18px;
+                    font-weight: 500;
+                    margin-bottom: 15px;
+                    line-height: 1.4;
 
                     & span {
-                        color: seashell;
-                        width: 60px;
+                        display: inline-block;
+
+                        & span {
+                            width: 50px;
+                            color: var(--paletteColor5);
+                        }
                     }
                 }
             }

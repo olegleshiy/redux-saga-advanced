@@ -19,14 +19,14 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-function* fetchVehicles(action) {
+function* fetchPlanets(action) {
     try {
         yield delay(2000);
 
-        const response = yield call(api.fetchVehicles, action.payload);
+        const response = yield call(api.fetchPlanets, action.payload);
         const data = yield apply(response, response.json);
 
-        yield put(swapiActions.fillVehicles(data.results));
+        yield put(swapiActions.fillPlanets(data.results));
     } catch (error) {
         console.log('→ error', error);
     } finally {
@@ -37,11 +37,11 @@ function* fetchVehicles(action) {
 }
 
 export function* runExample() {
-    let tasks = [];
+    const tasks = [];
 
     while (true) {
         const action = yield take([
-            types.FETCH_VEHICLES_ASYNC,
+            types.FETCH_PLANETS_ASYNC,
             types.CANCEL_FETCH,
         ]);
 
@@ -49,12 +49,12 @@ export function* runExample() {
             for (const task of tasks) {
                 yield cancel(task);
             }
-            tasks = [];
+            tasks.length = 0;
 
             continue;
         }
 
-        const task = yield fork(fetchVehicles, action);
+        const task = yield fork(fetchPlanets, action);
 
         tasks.push(task);
 

@@ -16,18 +16,18 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-function* fetchVehicles(action) {
-    const response = yield call(api.fetchVehicles, action.payload);
+function* fetchPlanets(action) {
+    const response = yield call(api.fetchPlanets, action.payload);
     const data = yield apply(response, response.json);
 
-    yield put(swapiActions.fillVehicles(data.results));
+    yield put(swapiActions.fillPlanets(data.results));
 }
 
 export function* runExample() {
     while (true) {
-        const action = yield take(types.FETCH_VEHICLES_ASYNC);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
 
-        const task = yield fork(fetchVehicles, action);
+        const task = yield fork(fetchPlanets, action);
 
         console.log('→ task', task);
     }

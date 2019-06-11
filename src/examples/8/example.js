@@ -31,7 +31,7 @@ function* errorSaga() {
 
 export function* runExample() {
     while (true) {
-        const action = yield take(types.FETCH_VEHICLES_ASYNC);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
 
         yield spawn(errorSaga, action);
     }

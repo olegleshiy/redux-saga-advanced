@@ -3,46 +3,53 @@
  */
 
 // Core
-import { take, fork, cancel } from 'redux-saga/effects';
+import { take, fork, cancel, all } from 'redux-saga/effects';
 
 // Instruments
 import { types } from '../../bus/swapi/types';
 
 // Workers
-import { fetchVehicles } from './fetchVehicles';
-import { fetchPeople } from './fetchPeople';
-import { fetchPlanets } from './fetchPlanets';
+import { fetchEntity } from './fetchEntity';
 
-export function* runExample() {
-    let tasks = [];
+const tasks = [];
 
+function* watchFetchPlanetsAsync() {
     while (true) {
-        const action = yield take([
-            types.FETCH_VEHICLES_ASYNC,
-            types.FETCH_ALL,
-            types.CANCEL_FETCH,
-        ]);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
+        const planetsTask = yield fork(fetchEntity, action, 'Planets');
+        console.log(action);
 
-        if (tasks.length && action.type === types.CANCEL_FETCH) {
+        tasks.push(planetsTask);
+    }
+}
+
+function* watchCancelFetch() {
+    while (true) {
+        yield take(types.CANCEL_FETCH);
+
+        if (tasks.length) {
             for (const task of tasks) {
                 yield cancel(task);
             }
-            tasks = [];
-
-            continue;
-        } else if (action.type === types.FETCH_VEHICLES_ASYNC) {
-            const vehiclesTask = yield fork(fetchVehicles, action);
-
-            tasks.push(vehiclesTask);
-            continue;
+            tasks.length = 0;
         }
+    }
+}
 
-        const vehiclesTask = yield fork(fetchVehicles, action);
-        const peopleTask = yield fork(fetchPeople, action);
-        const planetsTask = yield fork(fetchPlanets, action);
+export function* watchFetchAll() {
+    while (true) {
+        const action = yield take(types.FETCH_ALL);
 
-        tasks.push(vehiclesTask);
+        const peopleTask = yield fork(fetchEntity, action, 'People');
+        const vehiclesTask = yield fork(fetchEntity, action, 'Vehicles');
+        const planetsTask = yield fork(fetchEntity, action, 'Planets');
+
         tasks.push(peopleTask);
+        tasks.push(vehiclesTask);
         tasks.push(planetsTask);
     }
+}
+
+export function* runExample() {
+    yield all([ watchFetchPlanetsAsync(), watchCancelFetch(), watchFetchAll() ]);
 }

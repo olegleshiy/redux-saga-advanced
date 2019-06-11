@@ -1,5 +1,5 @@
 /**
- * Имплементация эффекта takeLatest могла-бы выглядеть где-то так.
+ * Имплементация эффекта takeLatest могла-бы выглядеть примерно так.
  */
 
 // Core
@@ -10,24 +10,24 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-function* fetchVehicles(action) {
-    const response = yield call(api.fetchVehicles, action.payload);
+function* fetchPlanets(action) {
+    const response = yield call(api.fetchPlanets, action.payload);
     const data = yield apply(response, response.json);
 
-    yield put(swapiActions.fillVehicles(data.results));
+    yield put(swapiActions.fillPlanets(data.results));
 }
 
 export function* runExample() {
     let task = null;
 
     while (true) {
-        const action = yield take(types.FETCH_VEHICLES_ASYNC);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
 
         if (task) {
             yield cancel(task);
             task = null;
         }
 
-        task = yield fork(fetchVehicles, action);
+        task = yield fork(fetchPlanets, action);
     }
 }

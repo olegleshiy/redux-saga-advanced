@@ -9,27 +9,16 @@ import { take, call, actionChannel } from 'redux-saga/effects';
 import { types } from '../../bus/swapi/types';
 
 // Workers
-import { fetchVehicles } from './fetchVehicles';
-import { fetchPeople } from './fetchPeople';
-import { fetchPlanets } from './fetchPlanets';
+import { fetchEntity } from './fetchEntity';
 
 export function* runExample() {
-    const buffer = yield actionChannel([
-        types.FETCH_ALL,
-        types.FETCH_VEHICLES_ASYNC,
-    ]);
+    const buffer = yield actionChannel(types.FETCH_ALL);
 
     while (true) {
         const action = yield take(buffer);
 
-        if (action.type === types.FETCH_VEHICLES_ASYNC) {
-            yield call(fetchVehicles, action);
-
-            continue;
-        }
-
-        yield call(fetchPlanets, action);
-        yield call(fetchVehicles, action);
-        yield call(fetchPeople, action);
+        yield call(fetchEntity, action, 'Planets');
+        yield call(fetchEntity, action, 'Vehicles');
+        yield call(fetchEntity, action, 'People');
     }
 }

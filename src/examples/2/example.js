@@ -17,11 +17,11 @@ import { api } from '../../Api';
 
 export function* runExample() {
     while (true) {
-        const action = yield take(types.FETCH_VEHICLES_ASYNC);
+        const action = yield take(types.FETCH_PLANETS_ASYNC);
 
-        const response = yield api.fetchVehicles(action.payload);
+        const response = yield api.fetchPlanets(action.payload);
         const data = yield response.json();
 
-        yield put(swapiActions.fillVehicles(data.results));
+        yield put(swapiActions.fillPlanets(data.results));
     }
 }

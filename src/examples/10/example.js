@@ -14,15 +14,15 @@ import { types } from '../../bus/swapi/types';
 import { swapiActions } from '../../bus/swapi/actions';
 import { api } from '../../Api';
 
-function* fetchVehicles(action) {
+function* fetchPlanets(action) {
     yield delay(1000);
 
-    const response = yield call(api.fetchVehicles, action.payload);
+    const response = yield call(api.fetchPlanets, action.payload);
     const data = yield apply(response, response.json);
 
-    yield put(swapiActions.fillVehicles(data.results));
+    yield put(swapiActions.fillPlanets(data.results));
 }
 
 export function* runExample() {
-    yield takeLatest(types.FETCH_VEHICLES_ASYNC, fetchVehicles);
+    yield takeLatest(types.FETCH_PLANETS_ASYNC, fetchPlanets);
 }
