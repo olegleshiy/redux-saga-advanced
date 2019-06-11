@@ -1,6 +1,9 @@
 // Core
 import React, { useState } from 'react';
 
+// Instruments
+import Styles from './styles.module.css';
+
 export const Entity = (props) => {
     const [ page, setPage ] = useState(1);
 
@@ -23,13 +26,19 @@ export const Entity = (props) => {
         <section>
             <h2>{props.title}</h2>
             <div>
-                <button onClick = { () => props.onClick(page) }>
+                <button
+                    disabled = { props.disabled }
+                    onClick = { () => props.onClick(page) }>
                     Получить {page} страницу
                 </button>
-                <button onClick = { getNextPage }>Получить следующую</button>
+                <button
+                    disabled = { props.disabled }
+                    onClick = { getNextPage }>
+                    Получить следующую
+                </button>
             </div>
             <h3>Выбрать страницу</h3>
-            <div>
+            <div className = { Styles.pages }>
                 <button onClick = { () => setPage(1) }>1</button>
                 <button onClick = { () => setPage(2) }>2</button>
                 <button onClick = { () => setPage(3) }>3</button>

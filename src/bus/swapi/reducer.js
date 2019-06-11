@@ -2,13 +2,20 @@
 import { types } from './types';
 
 const initialState = {
-    vehicles: [],
-    people:   [],
-    planets:  [],
+    isFetching: false,
+    vehicles:   [],
+    people:     [],
+    planets:    [],
 };
 
 export const swapiReducer = (state = initialState, action) => {
     switch (action.type) {
+        case types.SET_IS_FETCHING: {
+            return {
+                ...state,
+                isFetching: action.payload,
+            };
+        }
         case types.FILL_VEHICLES: {
             return {
                 ...state,

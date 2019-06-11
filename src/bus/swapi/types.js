@@ -1,5 +1,6 @@
 // Types
 export const types = {
+    SET_IS_FETCHING:      'SET_IS_FETCHING',
     FETCH_ALL:            'FETCH_ALL',
     FETCH_VEHICLES_ASYNC: 'FETCH_VEHICLES_ASYNC',
     FILL_VEHICLES:        'FILL_VEHICLES',

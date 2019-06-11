@@ -20,9 +20,11 @@ export function* runExample() {
     while (true) {
         const action = yield take(types.FETCH_PLANETS_ASYNC);
 
+        yield put(swapiActions.setIsFetching(true));
         const response = yield call(api.fetchPlanets, [ action.payload ]);
         const data = yield apply(response, response.json);
 
         yield put(swapiActions.fillPlanets(data.results));
+        yield put(swapiActions.setIsFetching(false));
     }
 }

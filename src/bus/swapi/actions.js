@@ -2,11 +2,11 @@
 import { types } from './types';
 
 export const swapiActions = {
-    fetchAll: (page = '1') => ({
+    fetchAll: (page) => ({
         type:    types.FETCH_ALL,
         payload: page,
     }),
-    fetchVehiclesAsync: (page = '1') => ({
+    fetchVehiclesAsync: (page) => ({
         type:    types.FETCH_VEHICLES_ASYNC,
         payload: page,
     }),
@@ -14,7 +14,7 @@ export const swapiActions = {
         type:    types.FILL_VEHICLES,
         payload: vehicles,
     }),
-    fetchPeopleAsync: (page = '1') => ({
+    fetchPeopleAsync: (page) => ({
         type:    types.FETCH_PEOPLE_ASYNC,
         payload: page,
     }),
@@ -22,7 +22,7 @@ export const swapiActions = {
         type:    types.FILL_PEOPLE,
         payload: vehicles,
     }),
-    fetchPlanetsAsync: (page = '1') => ({
+    fetchPlanetsAsync: (page) => ({
         type:    types.FETCH_PLANETS_ASYNC,
         payload: page,
     }),
@@ -32,5 +32,9 @@ export const swapiActions = {
     }),
     cancelFetch: () => ({
         type: types.CANCEL_FETCH,
+    }),
+    setIsFetching: (state) => ({
+        type:    types.SET_IS_FETCHING,
+        payload: state,
     }),
 };

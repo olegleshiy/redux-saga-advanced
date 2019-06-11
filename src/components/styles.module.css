@@ -4,6 +4,7 @@
     --paletteColor3: #6495ed;
     --paletteColor4: #9eca5b;
     --paletteColor5: #fff5ee;
+    --paletteColor6: #808080;
 
     background-color: #161619;
 }
@@ -39,12 +40,17 @@
         &:hover {
             transform: translateY(-2px);
         }
+
+        &:disabled {
+            color: var(--paletteColor6) !important;
+            cursor: wait;
+        }
     }
 
     & .getPrecise {
         display: flex;
         flex-direction: column;
-        min-width: 335px;
+        min-width: 340px;
 
         & .fetchAll {
             color: var(--paletteColor3);
@@ -64,7 +70,6 @@
         & section {
             display: flex;
             flex-direction: column;
-            min-width: 380px;
 
             &:not(:last-child) {
                 margin-right: 15px;
@@ -100,6 +105,13 @@
 
                 & button {
                     font-size: 15px;
+                    width: 185px;
+                }
+            }
+
+            & .pages {
+                & button {
+                    width: auto;
                 }
             }
 

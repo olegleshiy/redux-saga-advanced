@@ -10,9 +10,10 @@ import Styles from './styles.module.css';
 import { swapiActions } from '../bus/swapi/actions';
 
 const selectState = (state) => ({
-    vehicles: state.swapi.vehicles,
-    people:   state.swapi.people,
-    planets:  state.swapi.planets,
+    vehicles:   state.swapi.vehicles,
+    people:     state.swapi.people,
+    planets:    state.swapi.planets,
+    isFetching: state.swapi.isFetching,
 });
 
 export const Swapi = () => {
@@ -34,29 +35,34 @@ export const Swapi = () => {
             <div className = { Styles.getPrecise }>
                 <button
                     className = { Styles.fetchAll }
+                    disabled = { state.isFetching }
                     onClick = { getAll }>
-                    📄 Получить все ({page}) страницы
+                    📄 Получить все {page}-е страницы
                 </button>
                 <button
                     className = { Styles.cancelFetch }
+                    disabled = { state.isFetching }
                     onClick = { () => dispatch(swapiActions.cancelFetch()) }>
                     ⛔ Отменить запрос
                 </button>
             </div>
             <div className = { Styles.lists }>
                 <Entity
+                    disabled = { state.isFetching }
                     entities = { state.planets }
                     title = 'Планеты'
                     onClick = { (...props) => dispatch(swapiActions.fetchPlanetsAsync(...props))
                     }
                 />
                 <Entity
+                    disabled = { state.isFetching }
                     entities = { state.vehicles }
                     title = 'Техника'
                     onClick = { (...props) => dispatch(swapiActions.fetchVehiclesAsync(...props))
                     }
                 />
                 <Entity
+                    disabled = { state.isFetching }
                     entities = { state.people }
                     title = 'Люди'
                     onClick = { (...props) => dispatch(swapiActions.fetchPeopleAsync(...props))
